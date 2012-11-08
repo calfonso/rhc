@@ -20,7 +20,6 @@ List of commands
   create            Bind a registered rhcloud user to a domain in rhcloud.
   show              Display domain information and list the applications within the domain 
   alter             Alter namespace (will change urls).
-  status            Run a simple check on local configs and credentials to confirm tools are properly setup.
   destroy           Destroys the domain and any added ssh keys
 
 List of arguments
@@ -264,15 +263,6 @@ def show_domain_info()
   end
 end
 
-def check_domain_status
-  $opt['rhlogin'] = get_var('default_rhlogin') unless $opt['rhlogin']
-  p_usage if !RHC::check_rhlogin($opt['rhlogin'])
-
-  system("rhc-chk #{get_args} 2>&1")
-  if ($? != 0); exit 1 end
-end
-
-
 begin
   argv_c = ARGV.clone
 
@@ -287,7 +277,7 @@ begin
         ["--config", GetoptLong::REQUIRED_ARGUMENT],
         ["--timeout", GetoptLong::REQUIRED_ARGUMENT]
     )
-  elsif ARGV[0] =~ /^(status|show)$/
+  elsif ARGV[0] =~ /^(show)$/
     ARGV.shift
     opts = GetoptLong.new(
         ["--debug", "-d", GetoptLong::NO_ARGUMENT],
@@ -331,8 +321,6 @@ when "create"
   create_or_alter_domain(false)
 when "alter"
   create_or_alter_domain(true)
-when "status"
-  check_domain_status
 when "show", nil
   show_domain_info
 when "destroy"
