@@ -50,20 +50,6 @@ module RHC::Commands
       0
     end
 
-    summary "Run a status check on your domain"
-    def status
-      args = []
-
-      options.__hash__.each do |key, value|
-        value = value.to_s
-        if value.length > 0 && value.to_s.strip.length == 0; value = "'#{value}'" end
-        args << "--#{key} #{value}"
-      end
-
-      Kernel.system("rhc-chk #{args.join(' ')} 2>&1")
-      $?.exitstatus.nil? ? 1 : $?.exitstatus
-    end
-
     summary "Deletes your domain."
     syntax "<namespace>"
     argument :namespace, "Namespace you wish to destroy", ["-n", "--namespace namespace"]
