@@ -63,28 +63,6 @@ module RHC::Commands
       0
     end
 
-    summary "Run a status check on your configuration"
-    def status
-      args = []
-
-      options.__hash__.each do |key, value|
-        value = value.to_s
-        if value.length > 0 && value.to_s.strip.length == 0; value = "'#{value}'" end
-        # rhc-chk does not take '--debug true', so we need to treat it especially
-        # A long-term solution is to avoid relying on rhc-chk.
-        # See https://bugzilla.redhat.com/show_bug.cgi?id=887136 and
-        # https://bugzilla.redhat.com/show_bug.cgi?id=887309
-        if key.to_s == 'debug'
-          args << "--#{key}"
-        else
-          args << "--#{key} #{value}"
-        end
-      end
-
-      Kernel.system("rhc-chk #{args.join(' ')} 2>&1")
-      $?.exitstatus.nil? ? 1 : $?.exitstatus
-    end
-
     summary "Deletes your domain."
     syntax "<namespace>"
     argument :namespace, "Namespace you wish to destroy", ["-n", "--namespace namespace"]
