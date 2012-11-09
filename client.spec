@@ -3,7 +3,7 @@
 
 Summary:       OpenShift client management tools
 Name:          rhc
-Version: 1.0.4
+Version: 1.0.5
 Release:       1%{?dist}
 Group:         Network/Daemons
 License:       ASL 2.0
@@ -115,6 +115,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(0644,-,-) /etc/bash_completion.d/rhc
 
 %changelog
+* Fri Nov 09 2012 Brenton Leanhardt <bleanhar@redhat.com> 1.0.5-1
+- Bug 874829 - Client doesn't report a very coherent error when the server is
+  dead. (ccoleman@redhat.com)
+- BZ872116 Should disable 'rhc server' or re-write 'rhc server' for Enterprise
+  (calfonso@redhat.com)
+- BZ865391 rhc domain status always fail (calfonso@redhat.com)
+
 * Thu Nov 01 2012 Adam Miller <admiller@redhat.com> 1.0.4-1
 - Merge pull request #206 from fabianofranz/master (openshift+bot@redhat.com)
 - Increased the timeout to add jenkins cartridge to app (now the same as when
