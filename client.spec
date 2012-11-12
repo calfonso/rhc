@@ -3,7 +3,7 @@
 
 Summary:       OpenShift client management tools
 Name:          rhc
-Version: 1.0.5
+Version: 1.0.6
 Release:       1%{?dist}
 Group:         Network/Daemons
 License:       ASL 2.0
@@ -115,6 +115,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(0644,-,-) /etc/bash_completion.d/rhc
 
 %changelog
+* Mon Nov 12 2012 Brenton Leanhardt <bleanhar@redhat.com> 1.0.6-1
+- Bug 875878 - Show a more complete cartridge list (ccoleman@redhat.com)
+
 * Fri Nov 09 2012 Brenton Leanhardt <bleanhar@redhat.com> 1.0.5-1
 - Bug 874829 - Client doesn't report a very coherent error when the server is
   dead. (ccoleman@redhat.com)
