@@ -4,7 +4,7 @@
 Summary:       OpenShift client management tools
 Name:          rhc
 Version: 1.1.11
-Release:       1%{?dist}
+Release:       1.1%{?dist}
 Group:         Network/Daemons
 License:       ASL 2.0
 URL:           http://openshift.redhat.com
@@ -114,6 +114,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(0644,-,-) /etc/bash_completion.d/rhc
 
 %changelog
+* Wed Dec 12 2012 Brenton Leanhardt <bleanhar@redhat.com> 1.1.11-1.1
+- Rebased from upstream source and applied OpenShift Enterprise patches
+
 * Wed Nov 21 2012 Dan McPherson <dmcphers@redhat.com> 1.1.11-1
 - Minor tweak to output (ccoleman@redhat.com)
 - Fixing spec test (fotios@redhat.com)
